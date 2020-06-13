@@ -40,3 +40,9 @@ A VPC with 3 public subnets and 3 private subnets.
 
 Traffic from the private subnets is routed through NAT gateways.
 
+### VPC
+
+Path: `aws/vpc-sg`
+
+VPC with 1 public subnet, and a security group.
+Simply run `terraform apply` as the *.auto.tfvars files will be automatically used.
