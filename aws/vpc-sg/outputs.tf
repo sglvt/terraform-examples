@@ -22,6 +22,14 @@ output "nat_gateway_public_eips" {
   value = module.vpc.nat_gateway_public_eips
 }
 
-output "sg_demo" {
-  value = module.sg_demo.id
+output "sg_a" {
+  value = module.sg_a.id
+}
+
+output "sg_b" {
+  value = module.sg_b.id
+}
+
+output "sg_c" {
+  value = module.sg_c.id
 }
