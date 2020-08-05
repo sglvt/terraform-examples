@@ -52,6 +52,11 @@ module "sg_c" {
     join(",", ["0", "0", "-1", module.sg_a.id, "Allow all traffic from a"]),
     join(",", ["443", "443", "tcp", module.sg_b.id, "Allow HTTPS traffic from b"])
   ]
+  egress_source_sg_list = [ 
+    join(",", ["0", "0", "-1", module.sg_a.id, "Allow all traffic to a"]),
+    join(",", ["0", "0", "-1", module.sg_b.id, "Allow all traffic to b"])
+  ]
+  egress_cidr_list = []
   stack_name = var.stack_name
   additional_tags = var.additional_tags
 }
