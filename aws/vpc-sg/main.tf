@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "git::https://github.com/serbangilvitu/terraform-modules.git//aws/vpc?ref=v1.2.4"
+  source = "git::https://github.com/serbangilvitu/terraform-modules.git//aws/vpc?ref=v1.2.5"
   aws_region = var.aws_region
   stack_name = var.stack_name
   additional_tags = var.additional_tags
@@ -13,7 +13,7 @@ module "vpc" {
 }
 
 module "sg_a" {
-  source = "git::https://github.com/serbangilvitu/terraform-modules.git//aws/security-group?ref=v1.2.4"
+  source = "git::https://github.com/serbangilvitu/terraform-modules.git//aws/security-group?ref=v1.2.5"
   name_prefix = "${var.stack_name}-a"
   description = "Example a"
   vpc_id = module.vpc.id
@@ -21,16 +21,20 @@ module "sg_a" {
   ingress_from_self_list = var.sg_a_ingress_from_self_list
   ingress_source_sg_list = var.sg_a_ingress_source_sg_list
   ingress_cidr_list = var.sg_a_ingress_cidr_list
+  ingress_ipv6_cidr_list = var.sg_a_ingress_ipv6_cidr_list
+  ingress_prefix_list_ids = var.sg_a_ingress_prefix_list_ids
 
   egress_source_sg_list = var.sg_a_egress_source_sg_list
   egress_cidr_list = var.sg_a_egress_cidr_list
+  egress_ipv6_cidr_list = var.sg_a_egress_ipv6_cidr_list
+  egress_prefix_list_ids = var.sg_a_egress_prefix_list_ids
 
   stack_name = var.stack_name
   additional_tags = var.additional_tags
 }
 
 module "sg_b" {
-  source = "git::https://github.com/serbangilvitu/terraform-modules.git//aws/security-group?ref=v1.2.4"
+  source = "git::https://github.com/serbangilvitu/terraform-modules.git//aws/security-group?ref=v1.2.5"
   name_prefix = "${var.stack_name}-b"
   description = "Example b"
   vpc_id = module.vpc.id
@@ -43,7 +47,7 @@ module "sg_b" {
 }
 
 module "sg_c" {
-  source = "git::https://github.com/serbangilvitu/terraform-modules.git//aws/security-group?ref=v1.2.4"
+  source = "git::https://github.com/serbangilvitu/terraform-modules.git//aws/security-group?ref=v1.2.5"
   name_prefix = "${var.stack_name}-c"
   description = "Example c"
   vpc_id = module.vpc.id

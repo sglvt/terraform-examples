@@ -13,7 +13,19 @@ variable "sg_a_ingress_source_sg_list" {
 
 variable "sg_a_ingress_cidr_list" {
   type    = list(string)
-  description = "List of  concatenated ports, protocols, CIDR blocks used for inbound rules"
+  description = "List of  concatenated ports, protocols, CIDR (IPv4) blocks used for inbound rules"
+  default = []
+}
+
+variable "sg_a_ingress_ipv6_cidr_list" {
+  type    = list(string)
+  description = "List of concatenated ports, protocols, CIDR (IPv6) blocks used for inbound rules"
+  default = []
+}
+
+variable "sg_a_ingress_prefix_list_ids" {
+  type    = list(string)
+  description = "List of concatenated ports, protocols, prefix list ids used for inbound rules"
   default = []
 }
 
@@ -29,6 +41,18 @@ variable "sg_a_egress_cidr_list" {
   default = [ 
     "0,0,-1,0.0.0.0/0,Allow any" 
   ]
+}
+
+variable "sg_a_egress_ipv6_cidr_list" {
+  type    = list(string)
+  description = "List of concatenated ports, protocols, CIDR (IPv6) blocks used for outbound rules"
+  default = []
+}
+
+variable "sg_a_egress_prefix_list_ids" {
+  type    = list(string)
+  description = "List of concatenated ports, protocols, prefix list ids used for outbound rules"
+  default = []
 }
 
 # sg_b
