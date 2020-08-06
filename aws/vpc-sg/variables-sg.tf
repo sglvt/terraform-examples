@@ -43,6 +43,12 @@ variable "sg_a_egress_cidr_list" {
   ]
 }
 
+variable "sg_a_egress_from_self_list" {
+  type    = list(string)
+  description = "List of  concatenated ports, protocols from the same SG used for outbound rules"
+  default = []
+}
+
 variable "sg_a_egress_ipv6_cidr_list" {
   type    = list(string)
   description = "List of concatenated ports, protocols, CIDR (IPv6) blocks used for outbound rules"
