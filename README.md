@@ -12,8 +12,8 @@ terraform destroy -var-file <var-file>
 ```
 
 # Examples
-## AWS
-### VPC
+## aws
+### vpc
 
 Path: `aws/vpc`
 
@@ -40,9 +40,16 @@ A VPC with 3 public subnets and 3 private subnets.
 
 Traffic from the private subnets is routed through NAT gateways.
 
-### VPC
+### vpc-sg
 
 Path: `aws/vpc-sg`
 
 VPC with 1 public subnet, and a security group.
+Simply run `terraform apply` as the *.auto.tfvars files will be automatically used.
+
+### eks
+
+Path: `aws/eks`
+
+VPC with 3 public subnets, EKS cluster with public endpoint, autoscaling group (node group) with 1 t3.medium instance.
 Simply run `terraform apply` as the *.auto.tfvars files will be automatically used.
