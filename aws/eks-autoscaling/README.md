@@ -1,4 +1,3 @@
-
 ## TL;DR
 Setup the a test EKS cluster
 ```
@@ -59,6 +58,17 @@ terraform destroy
 ```
 
 ## A closer look
+
+As mentioned earlier, the autoscaling group has [the tags expected by the cluster autoscaler](https://github.com/serbangilvitu/terraform-examples/blob/master/aws/eks-autoscaling/main.tf#L196) - here's an excerpt from the Terraform code.
+```
+    "k8s.io/cluster-autoscaler/${var.stack_name}-${var.eks_cluster_name}" = "owned"
+    "k8s.io/cluster-autoscaler/enabled" = "true"
+```
+
+These tags could be overwritten by specifying the `autoDiscovery.tags`, however I'll go with the current convention `k8s.io/cluster-autoscaler/*`.
+
+Let's continue with the values used by the autoscaler.
+
 For some reason, in the [value file](https://github.com/kubernetes/autoscaler/blob/cluster-autoscaler-chart-1.0.4/charts/cluster-autoscaler-chart/values.yaml#L93) the default `cloudProvider` is `aws`, however it's best to specify it explicitly, so that you avoid surprises in future versions of the chart.
 
 For the autodiscovery, I'm specifying the cluster name - in this case extracted from a terraform output.
