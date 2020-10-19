@@ -54,7 +54,7 @@ kubectl -n kube-system logs -f deployment/cluster-autoscaler
 ```
 * in another terminal
 ```
-kubectl -n default apply -f https://raw.githubusercontent.com/serbangilvitu/terraform-examples/master/aws/eks-autoscaling/yaml/scaling-test.yaml
+kubectl -n default apply -f https://raw.githubusercontent.com/serbangilvitu/terraform-examples/master/aws/eks/yaml/scaling-test.yaml
 watch -n 5 kubectl get nodes
 ```
 
