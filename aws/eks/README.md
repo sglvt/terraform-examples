@@ -1,5 +1,6 @@
 ## AWS EKS - Setup with autoscaling
-See AUTOSCALING.md - it focuses more on the Cluster Autoscaler setup, and starts from scratch ( includes details for creating the cluster).
+See [AUTOSCALING.md](https://github.com/serbangilvitu/terraform-examples/blob/master/aws/eks/AUTOSCALING.md) - it focuses more on the Cluster Autoscaler setup, and starts from scratch ( includes details for creating the cluster).
+
 Blog post: https://sgilvitu.io/posts/2020/10/eks-autoscaling/
 
 ## AWS EKS - Setup without autoscaling
