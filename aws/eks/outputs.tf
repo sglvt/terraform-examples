@@ -1,3 +1,13 @@
+# Provider
+output "aws_region" {
+  value = var.aws_region
+}
+
+output "aws_profile" {
+  value = var.aws_profile
+}
+
+# VPC
 output "vpc_id" {
   value = module.vpc.id
 }
@@ -23,6 +33,10 @@ output "nat_gateway_public_eips" {
 }
 
 # EKS - Control Plane
+output "eks_cluster_name" {
+  value = aws_eks_cluster.eks_cluster.name
+}
+
 output "eks_cluster_endpoint" {
   value = aws_eks_cluster.eks_cluster.endpoint
 }
