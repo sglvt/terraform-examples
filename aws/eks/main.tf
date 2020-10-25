@@ -99,6 +99,16 @@ resource "aws_security_group_rule" "sg_eks_node_ingress_allow_443_from_self" {
   self = true
 }
 
+resource "aws_security_group_rule" "sg_eks_node_ingress_allow_53_from_self" {
+  type = "ingress"
+  from_port = 53
+  to_port = 53
+  protocol = "udp"
+  description = "Allow UDP 53 traffic from self"
+  security_group_id = aws_security_group.sg_eks_node.id
+  self = true
+}
+
 resource "aws_security_group_rule" "sg_eks_node_egress_allow_all" {
   type = "egress"
   from_port = 0
