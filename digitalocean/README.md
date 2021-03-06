@@ -2,7 +2,7 @@
 Download `doctl` https://github.com/digitalocean/doctl#downloading-a-release-from-github
 ```
 doctl auth init
-echo 'export DIGITALOCEAN_TOKEN=$(cat .config/doctl/config.yaml | grep token| cut -f2 -d" ")' >> ~/.bashrc
+echo 'export DIGITALOCEAN_TOKEN=$(cat ~/.config/doctl/config.yaml | grep token| cut -f2 -d" ")' >> ~/.bashrc
 ```
 Initialize working directory
 ```
