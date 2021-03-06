@@ -1,0 +1,10 @@
+ terraform {
+  backend "s3" {
+    bucket  = ""
+    region  = ""
+    encrypt = true
+    key     = "terraform/state"
+    skip_credentials_validation = true
+    skip_metadata_api_check = true
+  }
+}

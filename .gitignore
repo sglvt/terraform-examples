@@ -1,3 +1,4 @@
-**/.terraform*
-**/terraform*
-**/*-backend.tf
+.terraform*
+terraform*
+*-backend.tf
+.idea/*
