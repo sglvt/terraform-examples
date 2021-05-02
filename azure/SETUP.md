@@ -68,3 +68,15 @@ export ARM_CLIENT_SECRET=$(jq -r .password tf-principal.json)
 ## Ready to go
 If everything is set up correctly, running `terraform plan` on a valid Azure configuration should be successful.
 The four `ARM_*` variables must be set before running terraform commands.
+
+## (Optional) Remote backend - Azure Resource Manager
+[Azure RM](https://www.terraform.io/docs/language/settings/backends/azurerm.html) is one of the backends supported by Terraform.
+What I've done is - created a resource group called `state`
+
+In this resource group, create a storage account(with a globally unique name), and in this storage account create a container named `tfstate`.
+
+Copy the template, and edit it
+```
+cp arm-backend.tf.template resource-manager/arm-backend.tf
+# Edit the file to match your resource names
+```
