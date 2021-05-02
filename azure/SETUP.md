@@ -38,3 +38,7 @@ az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/${SUBSCRI
 ```
 az ad sp list --display-name terraform
 ```
+# Log in using service principal
+```
+az login --service-principal -u $() -p "<service_principal_password>" --tenant "<service_principal_tenant>"
+```
