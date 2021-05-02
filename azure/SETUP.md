@@ -47,3 +47,8 @@ View current status
 ```
 az account show
 ```
+
+export ARM_CLIENT_ID=$(jq -r .appId tf-principal.json)
+export ARM_TENANT_ID=$(jq -r .tenant tf-principal.json)
+export ARM_SUBSCRIPTION_ID=$(az account show | jq -r .id)
+export ARM_CLIENT_SECRET=$(jq -r .password tf-principal.json)
