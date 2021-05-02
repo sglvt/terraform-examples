@@ -1,6 +1,8 @@
-# Azure CLI setup
-## Setup
-https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux
+## Azure CLI setup
+### Setup
+
+Azure CLI installation steps can be found in the [documentation](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) 
+
 For Debian/Ubuntu:
 ```
 curl -sL https://aka.ms/InstallAzureCLIDeb > az-cli-setup.sh
@@ -13,7 +15,7 @@ Check the version
 ```
 az version
 ```
-## Login
+### Login
 ```
 az login
 ```
@@ -23,14 +25,17 @@ Use your browser to log into Azure
 az account show
 ```
 
-# Create a service principal
+## Create a service principal
 
 Next, create a service principal with the role "Contributor"
 The Contributor role is [described](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles) as "Grants full access to manage all resources, but does not allow you to assign roles in Azure RBAC, manage assignments in Azure Blueprints, or share image galleries."
 ```.
 
 SUBSCRIPTION_ID=$(az account show | jq -r .id)
-az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/${SUBSCRIPTION_ID}" -n "terraform" > tf-principal.json
+az ad sp create-for-rbac \
+    --role="Contributor" \
+    --scopes="/subscriptions/${SUBSCRIPTION_ID}" \
+    -n "terraform" > tf-principal.json
 ```
 
 (Optional) To view the newly created principal in the browser, navigate to `Active Directory`->`Registered Applications`->`All applications`
@@ -38,9 +43,12 @@ az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/${SUBSCRI
 ```
 az ad sp list --display-name terraform
 ```
-# Log in using service principal
+## Log in using service principal
 ```
-az login --service-principal -u "$(jq -r .name tf-principal.json)" -p "$(jq -r .password tf-principal.json)" --tenant "$(jq -r .tenant tf-principal.json)"
+az login --service-principal \
+    -u "$(jq -r .name tf-principal.json)" \
+    -p "$(jq -r .password tf-principal.json)" \
+    --tenant "$(jq -r .tenant tf-principal.json)"
 ```
 
 View current status
@@ -48,7 +56,7 @@ View current status
 az account show
 ```
 
-# Export environment variables for Terraform
+## Export environment variables for Terraform
 The following environment variables as described in the [documentation](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret#configuring-the-service-principal-in-terraform)
 ```
 export ARM_CLIENT_ID=$(jq -r .appId tf-principal.json)
@@ -56,3 +64,7 @@ export ARM_TENANT_ID=$(jq -r .tenant tf-principal.json)
 export ARM_SUBSCRIPTION_ID=$(az account show | jq -r .id)
 export ARM_CLIENT_SECRET=$(jq -r .password tf-principal.json)
 ```
+
+## Ready to go
+If everything is set up correctly, running `terraform plan` on a valid Azure configuration should be successful.
+The four `ARM_*` variables must be set before running terraform commands.
