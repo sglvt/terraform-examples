@@ -1,7 +1,4 @@
 ## Intro
-Create an AWS EKS cluster and deploy a cluster autoscaler.
-Blog post: https://sgilvitu.io/posts/2020/10/eks-autoscaling/
-
 ## TL;DR
 Setup the a test EKS cluster
 ```
