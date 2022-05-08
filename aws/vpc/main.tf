@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "git::https://github.com/serbangilvitu/terraform-modules.git//aws/vpc?ref=v1.1.0"
+  source = "git::https://github.com/sglvt/terraform-modules.git//aws/vpc?ref=v1.1.0"
   aws_region = var.aws_region
   stack_name = var.stack_name
   additional_tags = var.additional_tags

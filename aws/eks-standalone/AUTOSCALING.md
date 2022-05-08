@@ -2,7 +2,7 @@
 ## TL;DR
 Setup the a test EKS cluster
 ```
-git clone https://github.com/serbangilvitu/terraform-examples.git
+git clone https://github.com/sglvt/terraform-examples.git
 cd terraform-examples/aws/eks
 
 # Update aws_region and aws_profile in values-common.auto.tfvars
@@ -51,7 +51,7 @@ kubectl -n kube-system logs -f deployment/cluster-autoscaler
 ```
 * in another terminal
 ```
-kubectl -n default apply -f https://raw.githubusercontent.com/serbangilvitu/terraform-examples/master/aws/eks/yaml/scaling-test.yaml
+kubectl -n default apply -f https://raw.githubusercontent.com/sglvt/terraform-examples/master/aws/eks/yaml/scaling-test.yaml
 watch -n 5 kubectl get nodes
 ```
 
@@ -62,7 +62,7 @@ terraform destroy
 
 ## A closer look
 
-As mentioned earlier, the autoscaling group has [the tags expected by the cluster autoscaler](https://github.com/serbangilvitu/terraform-examples/blob/master/aws/eks-autoscaling/main.tf#L196) - here's an excerpt from the Terraform code.
+As mentioned earlier, the autoscaling group has [the tags expected by the cluster autoscaler](https://github.com/sglvt/terraform-examples/blob/master/aws/eks-autoscaling/main.tf#L196) - here's an excerpt from the Terraform code.
 ```
     "k8s.io/cluster-autoscaler/${var.stack_name}-${var.eks_cluster_name}" = "owned"
     "k8s.io/cluster-autoscaler/enabled" = "true"

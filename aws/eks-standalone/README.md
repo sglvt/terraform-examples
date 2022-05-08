@@ -2,7 +2,7 @@
 ### Checkout
 
 ```
-git clone https://github.com/serbangilvitu/terraform-examples.git
+git clone https://github.com/sglvt/terraform-examples.git
 cd terraform-examples/aws/eks
 ```
 

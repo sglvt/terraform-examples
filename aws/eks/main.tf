@@ -32,7 +32,7 @@ resource "aws_security_group" "sg_eks_node" {
 # ## SG - EKS Control Plane
 
 module "sg_eks_cp" {
-  source = "git::https://github.com/serbangilvitu/terraform-modules.git//aws/security-group?ref=v1.3.2"
+  source = "git::https://github.com/sglvt/terraform-modules.git//aws/security-group?ref=v1.3.2"
   name_prefix = "${var.stack_name}-eks-cp"
   description = "EKS Control Plane"
   vpc_id = data.aws_vpc.existing_vpc.id
@@ -169,38 +169,38 @@ resource "aws_eks_cluster" "eks_cluster" {
   ]
 }
 
-# module "eks_node_group_1" {
-#   source = "git::https://github.com/serbangilvitu/terraform-modules.git//aws/eks-node-group?ref=v1.3.2"
-#   cluster_name = "${var.stack_name}-${var.eks_cluster_name}"
-#   eks_version = var.eks_version
-#   subnet_ids = module.vpc.public_subnet_ids
-#   instance_type = var.eks_node_group_1_instance_type
-#   endpoint = aws_eks_cluster.eks_cluster.endpoint
-#   max_size = var.eks_node_group_1_max_size
-#   min_size = var.eks_node_group_1_min_size
-#   security_groups = list(aws_security_group.sg_eks_node.id)
-#   associate_public_ip_address = var.eks_node_group_1_associate_public_ip_address
-#   key_name = var.eks_node_group_1_key_name
-#   ebs_optimized = var.eks_node_group_1_ebs_optimized
-#   cluster_auth_base64 = aws_eks_cluster.eks_cluster.certificate_authority.0.data
+module "eks_node_group_1" {
+  source = "git::https://github.com/sglvt/terraform-modules.git//aws/eks-node-group?ref=v1.3.2"
+  cluster_name = "${var.stack_name}-${var.eks_cluster_name}"
+  eks_version = var.eks_version
+  subnet_ids = data.aws_subnets.existing_public_subnets.ids
+  instance_type = var.eks_node_group_1_instance_type
+  endpoint = aws_eks_cluster.eks_cluster.endpoint
+  max_size = var.eks_node_group_1_max_size
+  min_size = var.eks_node_group_1_min_size
+  security_groups = [aws_security_group.sg_eks_node.id]
+  associate_public_ip_address = var.eks_node_group_1_associate_public_ip_address
+  key_name = var.eks_node_group_1_key_name
+  ebs_optimized = var.eks_node_group_1_ebs_optimized
+  cluster_auth_base64 = aws_eks_cluster.eks_cluster.certificate_authority.0.data
 
-#   on_demand_base_capacity = var.eks_node_group_1_on_demand_base_capacity
-#   on_demand_percentage_above_base_capacity = var.eks_node_group_1_on_demand_percentage_above_base_capacity
-#   spot_allocation_strategy = var.eks_node_group_1_spot_allocation_strategy
-#   spot_instance_pools = var.eks_node_group_1_spot_instance_pools
-#   spot_max_price = var.eks_node_group_1_spot_max_price
+  on_demand_base_capacity = var.eks_node_group_1_on_demand_base_capacity
+  on_demand_percentage_above_base_capacity = var.eks_node_group_1_on_demand_percentage_above_base_capacity
+  spot_allocation_strategy = var.eks_node_group_1_spot_allocation_strategy
+  spot_instance_pools = var.eks_node_group_1_spot_instance_pools
+  spot_max_price = var.eks_node_group_1_spot_max_price
 
-#   pre_userdata = var.eks_node_group_1_pre_userdata
-#   bootstrap_extra_args = var.eks_node_group_1_bootstrap_extra_args
-#   kubelet_extra_args = var.eks_node_group_1_kubelet_extra_args
-#   additional_userdata = var.eks_node_group_1_additional_userdata
+  pre_userdata = var.eks_node_group_1_pre_userdata
+  bootstrap_extra_args = var.eks_node_group_1_bootstrap_extra_args
+  kubelet_extra_args = var.eks_node_group_1_kubelet_extra_args
+  additional_userdata = var.eks_node_group_1_additional_userdata
 
-#   stack_name = var.stack_name
-#   additional_tags = merge({
-#     Name = "${var.stack_name}-${var.eks_cluster_name}-group-1"
-#     "kubernetes.io/cluster/${var.stack_name}-${var.eks_cluster_name}" = "shared"
-#     "k8s.io/cluster-autoscaler/${var.stack_name}-${var.eks_cluster_name}" = "owned"
-#     "k8s.io/cluster-autoscaler/enabled" = "true"
-#     stack_name = var.stack_name
-#   }, var.additional_tags)
-# }
+  stack_name = var.stack_name
+  additional_tags = merge({
+    Name = "${var.stack_name}-${var.eks_cluster_name}-group-1"
+    "kubernetes.io/cluster/${var.stack_name}-${var.eks_cluster_name}" = "shared"
+    "k8s.io/cluster-autoscaler/${var.stack_name}-${var.eks_cluster_name}" = "owned"
+    "k8s.io/cluster-autoscaler/enabled" = "true"
+    stack_name = var.stack_name
+  }, var.additional_tags)
+}

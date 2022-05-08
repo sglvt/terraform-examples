@@ -1,7 +1,7 @@
 # VPC
 
 module "vpc" {
-  source = "git::https://github.com/serbangilvitu/terraform-modules.git//aws/vpc?ref=v1.3.2"
+  source = "git::https://github.com/sglvt/terraform-modules.git//aws/vpc?ref=v1.3.2"
   aws_region = var.aws_region
   stack_name = var.stack_name
   additional_tags = merge({
@@ -36,7 +36,7 @@ resource "aws_security_group" "sg_eks_node" {
 ## SG - EKS Control Plane
 
 module "sg_eks_cp" {
-  source = "git::https://github.com/serbangilvitu/terraform-modules.git//aws/security-group?ref=v1.3.2"
+  source = "git::https://github.com/sglvt/terraform-modules.git//aws/security-group?ref=v1.3.2"
   name_prefix = "${var.stack_name}-eks-cp"
   description = "EKS Control Plane"
   vpc_id = module.vpc.id
@@ -174,7 +174,7 @@ resource "aws_eks_cluster" "eks_cluster" {
 }
 
 module "eks_node_group_1" {
-  source = "git::https://github.com/serbangilvitu/terraform-modules.git//aws/eks-node-group?ref=v1.3.2"
+  source = "git::https://github.com/sglvt/terraform-modules.git//aws/eks-node-group?ref=v1.3.2"
   cluster_name = "${var.stack_name}-${var.eks_cluster_name}"
   eks_version = var.eks_version
   subnet_ids = module.vpc.public_subnet_ids

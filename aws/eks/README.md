@@ -3,7 +3,7 @@
 ### Checkout
 
 ```
-git clone https://github.com/serbangilvitu/terraform-examples.git
+git clone https://github.com/sglvt/terraform-examples.git
 cd terraform-examples/aws/eks
 ```
 
@@ -36,7 +36,7 @@ The following command will create the [aws-auth-cm](https://docs.aws.amazon.com/
 
 ```
 export eks_node_group_1_role_arn="$(terraform output eks_node_group_1_role_arn)" && \
-curl -so - https://amazon-eks.s3.us-west-2.amazonaws.com/cloudformation/2020-07-23/aws-auth-cm.yaml \
+curl -so - https://amazon-eks.s3.us-west-2.amazonaws.com/cloudformation/2020-10-29/aws-auth-cm.yaml \
 | sed -e 's/<ARN.*>/${eks_node_group_1_role_arn}/g' | envsubst \
 | tee | kubectl apply -f -
 ```

@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "git::https://github.com/serbangilvitu/terraform-modules.git//aws/vpc?ref=v1.2.6"
+  source = "git::https://github.com/sglvt/terraform-modules.git//aws/vpc?ref=v1.2.6"
   aws_region = var.aws_region
   stack_name = var.stack_name
   additional_tags = var.additional_tags
@@ -13,7 +13,7 @@ module "vpc" {
 }
 
 module "sg_a" {
-  source = "git::https://github.com/serbangilvitu/terraform-modules.git//aws/security-group?ref=v1.2.6"
+  source = "git::https://github.com/sglvt/terraform-modules.git//aws/security-group?ref=v1.2.6"
   name_prefix = "${var.stack_name}-a"
   description = "Example a"
   vpc_id = module.vpc.id
@@ -35,7 +35,7 @@ module "sg_a" {
 }
 
 module "sg_b" {
-  source = "git::https://github.com/serbangilvitu/terraform-modules.git//aws/security-group?ref=v1.2.6"
+  source = "git::https://github.com/sglvt/terraform-modules.git//aws/security-group?ref=v1.2.6"
   name_prefix = "${var.stack_name}-b"
   description = "Example b"
   vpc_id = module.vpc.id
@@ -48,7 +48,7 @@ module "sg_b" {
 }
 
 module "sg_c" {
-  source = "git::https://github.com/serbangilvitu/terraform-modules.git//aws/security-group?ref=v1.2.6"
+  source = "git::https://github.com/sglvt/terraform-modules.git//aws/security-group?ref=v1.2.6"
   name_prefix = "${var.stack_name}-c"
   description = "Example c"
   vpc_id = module.vpc.id
