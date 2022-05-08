@@ -11,8 +11,3 @@ variable "stack_name" {
   type = string
   description = "Stack name"
 }
-
-variable "additional_tags" {
-  type    = map(string)
-  description = "Additional tags to be added"
-}

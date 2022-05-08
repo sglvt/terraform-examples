@@ -1,5 +1,5 @@
 eks_cluster_name = "c1"
-eks_version = "1.22"
+eks_version = "1.18"
 eks_enabled_cluster_log_types = [
     # "api",
     # "audit",
