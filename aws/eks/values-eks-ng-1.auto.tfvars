@@ -4,6 +4,7 @@ eks_node_group_1_max_size = "3"
 eks_node_group_1_key_name = ""
 eks_node_group_1_associate_public_ip_address = "true"
 eks_node_group_1_ebs_optimized = "true"
+eks_node_group_1_bootstrap_extra_args="--container-runtime containerd"
 
 ## Mixed Instances Policy
 eks_node_group_1_on_demand_base_capacity = "1"
