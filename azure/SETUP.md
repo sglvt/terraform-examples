@@ -46,7 +46,7 @@ az ad sp list --display-name terraform
 ## Log in using service principal
 ```
 az login --service-principal \
-    -u "$(jq -r .name tf-principal.json)" \
+    -u "$(jq -r .appId tf-principal.json)" \
     -p "$(jq -r .password tf-principal.json)" \
     --tenant "$(jq -r .tenant tf-principal.json)"
 ```
